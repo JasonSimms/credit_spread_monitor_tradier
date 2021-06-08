@@ -1,0 +1,24 @@
+{
+  "name": "credit_spread_monitor_tradier",
+  "version": "1.0.0",
+  "description": "Portolio management tool to calculate outstanding risk on portfolio",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JasonSimms/credit_spread_monitor_tradier.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JasonSimms/credit_spread_monitor_tradier/issues"
+  },
+  "homepage": "https://github.com/JasonSimms/credit_spread_monitor_tradier#readme"
+}
