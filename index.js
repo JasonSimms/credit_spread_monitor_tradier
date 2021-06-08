@@ -75,20 +75,25 @@ const findPairs = arr =>{
     return output;
 }
 
-const foo = async () => {
-    const positions = await API.getPositions();
+// const foo = async () => {
+//     const positions = await API.getPositions();
 
-    const targetExposure = 5000;
-    let totalExposure = 0;
+//     const targetExposure = 5000;
+//     let totalExposure = 0;
    
-    const pairs = findPairs(positions);
-    Object.keys(pairs).forEach(el => {
-        const myRisk = getRisk(pairs[el]);
-        parseSymbol(pairs[el].short.symbol)
-        console.log(el,' >> ', myRisk)
-    totalExposure += myRisk;
-    })
-    console.log('TOTAL_EXPOSURE: ',totalExposure, 'UTILIZATION: ', totalExposure/targetExposure, 'REMAINING: ', targetExposure-totalExposure);
+//     const pairs = findPairs(positions);
+//     Object.keys(pairs).forEach(el => {
+//         const myRisk = getRisk(pairs[el]);
+//         parseSymbol(pairs[el].short.symbol)
+//         console.log(el,' >> ', myRisk)
+//     totalExposure += myRisk;
+//     })
+//     console.log('TOTAL_EXPOSURE: ',totalExposure, 'UTILIZATION: ', totalExposure/targetExposure, 'REMAINING: ', targetExposure-totalExposure);
+// }
+
+const foo = async () =>{
+    const quotes = await API.getQuotes(['K','AMC', 'F'])
+    console.log(quotes);
 }
 
 foo();

@@ -10,20 +10,20 @@ console.log(BASE_URL);
 
 
 const BASE_HEADERS = {
-    'Authorization': 'Bearer '+TOKEN,
+    'Authorization': 'Bearer ' + TOKEN,
     'Accept': 'application/json'
-  }
+}
 
 
-const getProfile = () =>{
+const getProfile = () => {
     request({
         method: 'get',
         url: BASE_URL + 'user/profile',
         headers: BASE_HEADERS
-      }, (error, response, body) => {
-          console.log(response.statusCode);
-          console.log(body);
-      });
+    }, (error, response, body) => {
+        console.log(response.statusCode);
+        console.log(body);
+    });
 
 }
 
@@ -33,11 +33,11 @@ const getBalance = () => {
             method: 'get',
             url: BASE_URL + 'accounts/' + ACCOUNT_ID + '/balances',
             headers: BASE_HEADERS
-          }, (error, response, body) => {
-              console.log(response.statusCode);
-              console.log(body);
-          });
-    
+        }, (error, response, body) => {
+            console.log(response.statusCode);
+            console.log(body);
+        });
+
     }
 }
 
@@ -55,11 +55,11 @@ const getHistory = () => {
             //     'symbol': 'SPY'
             //  },
             headers: BASE_HEADERS
-          }, (error, response, body) => {
-              console.log(response.statusCode);
-              console.log(body);
-          });
-    
+        }, (error, response, body) => {
+            console.log(response.statusCode);
+            console.log(body);
+        });
+
     }
 }
 
@@ -71,9 +71,9 @@ const getPositions = () => {
     return new Promise((res, rej) => {
         request({
             method: 'get',
-            url: BASE_URL + 'accounts/' + ACCOUNT_ID + '/positions',
+            url: BASE_URL + '/accounts/' + ACCOUNT_ID + '/positions',
             qs: {
-                
+
             },
             headers: BASE_HEADERS
         }, (error, response, body) => {
@@ -85,6 +85,33 @@ const getPositions = () => {
     })
 }
 
+const getQuotes = arr => {
+    return new Promise((res, rej) => {
+        let queryString = arr.join(',')
+
+
+        request({
+            method: 'get',
+            url: BASE_URL + '/markets/quotes',
+            qs: {
+                'symbols': queryString,
+                'greeks': 'false'
+             },
+            headers: BASE_HEADERS
+        }, (error, response, body) => {
+            console.log(response.statusCode);
+            const obj = JSON.parse(body).quotes.quote;
+            const lastQuotes = obj.map(el => {
+                return {"symbol": el.symbol, "last": el.last}
+            })
+            res(lastQuotes)
+        });
+
+
+    })
+}
+
 module.exports = {
-    getPositions
+    getPositions,
+    getQuotes
 }

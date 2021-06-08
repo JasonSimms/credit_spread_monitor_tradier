@@ -3,10 +3,10 @@ Portolio management tool to calculate outstanding risk on portfolio
 
 
 ## TODO
-1. Establish api calls to live & sandbox api
-1. Build a sandbox option portfolio
-1. create watchlist
-1. create methods to pull required data
+1. <s>Establish api calls to live & sandbox api</s>
+1. <s>Build a sandbox option portfolio</s>
+1. <s>grab quotes</s>
+1. <s>create methods to pull required data</s>
 1. create calculators to parse desired info
 1. split risk in Calls / Puts
 1. split risk into new / near expiration 
