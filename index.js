@@ -12,9 +12,11 @@ const parseSymbol = str =>{
 
     const ticker = str.slice(0,-15);
 
-    console.log('Ticker:', ticker, 'expiration: ', isoDate, 'Strike:', strike, 'type: ', type)
-    console.log('Expiration ??>>',timeToExpiration(isoDate));
-    return {ticker, expiration, strike, type};
+    // console.log('Ticker:', ticker, 'expiration: ', isoDate, 'Strike:', strike, 'type: ', type)
+    // console.log('Expiration ??>>',timeToExpiration(isoDate));
+    const daysToExpire = timeToExpiration(isoDate);
+
+    return {ticker, expiration, strike, type, daysToExpire};
 }
 
 const timeToExpiration = expirationDate =>{
@@ -38,31 +40,31 @@ const getRisk = obj =>{
 
 
 
-const  Spread = {
-    constructor(shortPosition, longPosition){
-        /* recieve tradier position object 
-        {
-  "cost_basis": -558,
-  "date_acquired": "2021-06-08T18:46:18.159Z",
-  "id": 253512,
-  "quantity": -3,
-  "symbol": "SPYP00415000"
- }
+// const  Spread = {
+//     constructor(shortPosition, longPosition){
+//         /* recieve tradier position object 
+//         {
+//   "cost_basis": -558,
+//   "date_acquired": "2021-06-08T18:46:18.159Z",
+//   "id": 253512,
+//   "quantity": -3,
+//   "symbol": "SPYP00415000"
+//  }
         
-        */
-        this.exposure = 0;
-        this.premium = 0;
-        this.expiration = 0;
-        this.symbol = 'aapl';
-        this.danger = false;
-        this.name = '50 / 60 Call Spread AAPL';
-    }
-}
+//         */
+//         this.exposure = 0;
+//         this.premium = 0;
+//         this.expiration = 0;
+//         this.symbol = 'aapl';
+//         this.danger = false;
+//         this.name = '50 / 60 Call Spread AAPL';
+//     }
+// }
 
 const findPairs = arr =>{
     const output = {};
     arr.forEach((el,i) => {
-        const symbol = el.symbol.substr(0,10);
+        const symbol = el.symbol.slice(0,-8)
         const long = el.quantity > 0
 
         if(!output[symbol])output[symbol]={long:null, short: null}
